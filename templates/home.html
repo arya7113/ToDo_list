@@ -1,0 +1,39 @@
+{% extends "layout.html" %} 
+{% block title %}To-Do List{% endblock %}
+{% block body %}
+    <div>
+        <h1>To-Do List</h1>
+        <a href="/task">
+            <button>+</button>
+        </a>
+    </div>
+    <div >
+        <p>------------------------------------------------------------------------------------------------------------</p>
+        {% if tasks %}
+            {% for task in tasks %}
+                <div>
+                    <p>Deadline: {{task.date}}</p>
+                    <h3>Task: {{ task.task }}</h3>
+                    <p> Priority: {{ task.display_priority }}, Category: {{ task.category.category }}</p>
+                    <form method="POST" action="/update_task/{{ task.id }}">
+                        <label for="status_{{ task_id }}">Update_Status:</label>
+                        <select name="status" class="task_status" >
+                            <option default disabled>Status</option>
+                            <option >{{ task.display_status }}</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Canceled">Canceled</option>
+                        </select>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+                <p>------------------------------------------------------------------------------------------------------------</p>
+            {% endfor %}
+        {% else %}
+            <p>No tasks added yet.</p>
+        {% endif %}  
+    </div>
+{% endblock %}
+
+
+

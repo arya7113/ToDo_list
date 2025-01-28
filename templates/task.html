@@ -1,0 +1,28 @@
+{% extends "layout.html" %} 
+{% block title %}To-Do List{% endblock %}
+{% block body %}
+<form action="/task", method="post">
+    <label for="date">Deadline:</label>
+    <input type="date" id="date" name="date">
+    <div class="add-task">
+        <label for="task">Task:</label>
+        <input type="text" name="task" class="form-control" id="task" required>
+    </div>
+    <select name="priority" class="add-task" required>
+        <option selected disabled>Priority</option>
+        <option value="High">High</option>
+        <option value="Medium">Medium</option>
+        <option value="Low">Low</option>
+    </select>
+    <select name="category" class="add-task" required>
+        <option selected disabled>Category</option>
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Home">Home</option>
+        <option value="Social">Social</option>
+    </select>
+
+    <button type="submit" class="btn btn-default">Add Note</button>
+</form>
+{% endblock %}
+
